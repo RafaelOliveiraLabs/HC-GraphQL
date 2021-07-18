@@ -1,32 +1,10 @@
 import express, { response } from "express";
 import cors from "cors";
 import { ApolloServer, gql } from "apollo-server-express";
+import typeDefs from "./graphql/typeDefs";
+import resolvers from "./graphql/resolvers";
 
 async function startApolloServer() {
-  const typeDefs = gql`
-    type Client {
-      id: ID!
-      name: String!
-    }
-
-    type Demand {
-      id: ID!
-      name: String!
-      client: Client!
-      deadline: String
-    }
-
-    type Query {
-      demands: [Demand]!
-    }
-  `;
-
-  const resolvers = {
-    Query: {
-      demands: () => [],
-    },
-  };
-
   const server = new ApolloServer({ typeDefs, resolvers });
 
   await server.start();
@@ -38,21 +16,9 @@ async function startApolloServer() {
     cors: {
       origin: "http://localhost:3000",
     },
-  });
 
-  /* server.get("/status", (_, response) => {
-  response.send({
-    status: "Okay",
+    bodyParserConfig: true,
   });
-}); */
-
-  /* server.options("/authenticate", enableCors).post("/authenticate", enableCors, express.json(), (request, response) => {
-  console.log("E-mail", request.body.email, "Senha", request.body.password);
-
-  response.send({
-    Okay: true,
-  });
-}); */
 
   const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8000;
   const HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
