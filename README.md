@@ -1,5 +1,14 @@
 # Módulo GraphQL - Hiring Coders 21
 
+## Projeto Client Server
+
+- Exemplo de projeto Client Server para authenticação de usuário
+
+## Dev Demands
+
+- Projeto para controle de demanda do programador (Próximas demandas, horários e pagamentos)
+- Clientes também podem ver o sistema (Controle de usuário, login e demandas)
+
 ## Conteúdo do módulo
 
 - Apresentação e Introdução
