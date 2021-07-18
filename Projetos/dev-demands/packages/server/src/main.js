@@ -2,10 +2,8 @@ import express, { response } from "express";
 import cors from "cors";
 import { ApolloServer, gql } from "apollo-server-express";
 
-const app = express();
-
-const server = new ApolloServer({
-  typeDefs: gql`
+async function startApolloServer() {
+  const typeDefs = gql`
     type Client {
       id: ID!
       name: String!
@@ -21,23 +19,34 @@ const server = new ApolloServer({
     type Query {
       demands: [Demand]!
     }
-  `,
-});
+  `;
 
-server.applyMiddleware({
-  app,
-  cors: {
-    origin: "http://localhost:3000",
-  },
-});
+  const resolvers = {
+    Query: {
+      demands: () => [],
+    },
+  };
 
-/* server.get("/status", (_, response) => {
+  const server = new ApolloServer({ typeDefs, resolvers });
+
+  await server.start();
+
+  const app = express();
+
+  server.applyMiddleware({
+    app,
+    cors: {
+      origin: "http://localhost:3000",
+    },
+  });
+
+  /* server.get("/status", (_, response) => {
   response.send({
     status: "Okay",
   });
 }); */
 
-/* server.options("/authenticate", enableCors).post("/authenticate", enableCors, express.json(), (request, response) => {
+  /* server.options("/authenticate", enableCors).post("/authenticate", enableCors, express.json(), (request, response) => {
   console.log("E-mail", request.body.email, "Senha", request.body.password);
 
   response.send({
@@ -45,9 +54,14 @@ server.applyMiddleware({
   });
 }); */
 
-const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8000;
-const HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
+  const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8000;
+  const HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
 
-server.listen(8000, "127.0.0.1", () => {
-  console.log(`Server is listening at http://${HOSTNAME}:${PORT}`);
-});
+  await new Promise((resolve) => app.listen({ port: PORT, hostname: HOSTNAME }, resolve));
+  app.listen(() => {
+    console.log(`Server is listening at http://${HOSTNAME}:${PORT}`);
+  });
+  return { server, app };
+}
+
+startApolloServer();
