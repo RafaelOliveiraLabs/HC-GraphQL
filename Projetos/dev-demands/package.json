@@ -10,5 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "esm": "^3.2.25"
+  },
+  "devDependencies": {
+    "apollo-server-express": "^3.0.1",
+    "graphql": "^15.5.1"
   }
 }

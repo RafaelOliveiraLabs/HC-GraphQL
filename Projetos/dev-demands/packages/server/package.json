@@ -5,12 +5,16 @@
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r esm",
     "start": "node -r esm ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "esm": "^3.2.25"
+    "apollo-server-express": "^3.0.1",
+    "esm": "^3.2.25",
+    "graphql": "^15.5.1",
+    "nodemon": "^2.0.12"
   },
   "dependencies": {
     "cors": "^2.8.5",
