@@ -4,7 +4,7 @@
 
 - Exemplo de projeto Client Server para authenticação de usuário
 
-## Dev Demands
+## Projeto Dev Demands
 
 - Projeto para controle de demanda do programador (Próximas demandas, horários e pagamentos)
 - Clientes também podem ver o sistema (Controle de usuário, login e demandas)
