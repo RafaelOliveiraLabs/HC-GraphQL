@@ -14,9 +14,9 @@ function SignIn() {
         password,
       }),
     })
-      .then((response) => response.JSON())
-      .then(() => {
-        console.log("Success");
+      //.then((response) => response.JSON())
+      .then((data) => {
+        console.log("Success", data);
       });
   };
 
