@@ -5,7 +5,10 @@ import typeDefs from "./graphql/typeDefs";
 import resolvers from "./graphql/resolvers";
 
 async function startApolloServer() {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
 
   await server.start();
 
