@@ -1,9 +1,10 @@
 import React from "react";
+import { ClientList } from "../components/ClientList";
 
 function home() {
   return (
     <>
-      <h1>Home</h1>
+      <ClientList />
     </>
   );
 }
