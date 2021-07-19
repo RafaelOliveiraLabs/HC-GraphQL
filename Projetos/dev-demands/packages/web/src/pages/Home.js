@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ClientList } from "../components/ClientList";
+import { ClientEdit } from "../components/ClientEdit";
 
-function home() {
+export default function Home() {
+  const [clientId, setClientId] = useState(null);
+
   return (
-    <>
-      <ClientList />
-    </>
+    <main>
+      <ClientList onSelectClient={setClientId} />
+      <ClientEdit clientId={clientId} />
+    </main>
   );
 }
-
-export default home;
